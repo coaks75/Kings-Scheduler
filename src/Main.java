@@ -45,6 +45,9 @@ public class Main {
 		
 		// We are using the helper method to get all of our courses
 		ArrayList<Course> courses = getCourses(scanner);
+		System.out.println("What is your anticipated graduation date? Please enter in the format \"MM/YYYY\"");
+		System.out.println("\tExample: 05/2020");
+		String gradDate = scanner.nextLine();
 		
 		System.out.println("When is your registration time? Please enter in the format \"dd MMM uuuu HH:mm:ss\"");
 		System.out.println("\tExample: 08 Apr 2019 18:30:00");
@@ -161,6 +164,21 @@ public class Main {
 		started = now;
 		
 		browser.findElement(By.name("SUBMIT2")).click();
+		
+		while(!cmdDone) {
+			try {
+				Select register = new Select(browser.findElement(By.id("VAR3")));
+				register.selectByValue("RG");
+				Select gradDateSelect = new Select(browser.findElement(By.id("VAR30")));
+				gradDateSelect.selectByValue(gradDate);
+				cmdDone = true;
+				browser.findElement(By.name("SUBMIT2")).click();
+			}
+			catch(Exception e) {
+				System.out.println("Trying to register");
+			}
+		}
+		cmdDone = false;
 		
 		
 	}
