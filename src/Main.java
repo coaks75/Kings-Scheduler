@@ -179,7 +179,9 @@ public class Main {
 			}
 		}
 		cmdDone = false;
+		ended = LocalDateTime.now();
 		
+		System.out.println("Your classes were successfully registered for at: " + dtf2.format(ended));
 		
 	}
 	
